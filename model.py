@@ -1,14 +1,15 @@
 import numpy as np
+from sklearn import linear_model
 
+linear = linear_model.LinearRegression()
 
 class CreditModel:
     def __init__(self):
         """
         Instantiates the model object, creating class variables if needed.
         """
-
         # TODO: Initialize your model object.
-        pass
+
 
     def fit(self, X_train, y_train):
         """
@@ -19,7 +20,9 @@ class CreditModel:
         """
 
         # TODO: Fit your model based on the given X and y.
-        pass
+
+        linear.fit(X_train, y_train)
+        linear.score(X_train, y_train)
 
     def predict(self, X_test):
         """
@@ -30,4 +33,4 @@ class CreditModel:
         """
 
         # TODO: Predict on `X_test` based on what you learned in the fit phase.
-        return np.random.randint(2, size=len(X_test))
+        return linear.predict(X_test)
