@@ -1,14 +1,15 @@
 import numpy as np
 from sklearn.ensemble import GradientBoostingClassifier
 
-model = GradientBoostingClassifier(n_estimators = 1000, learning_rate=1.0, max_depth=1, random_state=0)
 
+model = GradientBoostingClassifier()
 class CreditModel:
     def __init__(self):
         """
         Instantiates the model object, creating class variables if needed.
         """
         # TODO: Initialize your model object.
+        model = GradientBoostingClassifier(n_estimators = 1000, learning_rate=1.0, max_depth=1, random_state=0)
 
 
     def fit(self, X_train, y_train):
