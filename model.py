@@ -1,7 +1,7 @@
 import numpy as np
-from sklearn import linear_model
+from sklearn.ensemble import GradientBoostingClassifier
 
-linear = linear_model.LinearRegression()
+model = GradientBoostingClassifier(n_estimators = 1000, learning_rate=1.0, max_depth=1, random_state=0)
 
 class CreditModel:
     def __init__(self):
@@ -21,8 +21,7 @@ class CreditModel:
 
         # TODO: Fit your model based on the given X and y.
 
-        linear.fit(X_train, y_train)
-        linear.score(X_train, y_train)
+        model.fit(X_train, y_train)
 
     def predict(self, X_test):
         """
@@ -33,4 +32,4 @@ class CreditModel:
         """
 
         # TODO: Predict on `X_test` based on what you learned in the fit phase.
-        return linear.predict(X_test)
+        return model.predict(X_test)
