@@ -38,8 +38,39 @@ _Good luck, and have fun with this_! :rocket:
 
 ## Write-up
 
-Give a brief summary of the approach you took, and why! Include your model's
-accuracy/precision/recall scores as well!
+So, to begin the project I first copied the code over to a python notebook to visualize the dataset, as well as understand what the prewritten code split the database. For that, I used numpy, pandas, seaborn and matplotlib. I also decided to add a linear regression model just to check if the program ran without any errors before proceeding.  
+
+Since this was a classification problem, I decided to choose the following models to explore:
+* Gradient Boosting Classifier from SciKit Ensemble
+* Random Forest Classifier from SciKit Ensemble
+* AdaBoost Classifier from SciKit Ensemble
+* Catboost Classifier from Yandex (Proprietary Gradient Boosting Classifier, used as reference)  
+
+I chose these models over estimators because ensembles combine individual estimators anyways, and I felt that these would provide better results. The reason for choosing so many models was simply because I had no idea which one of these would work best, so I decided to try all of them!
+
+Inspecting the data revealed no reason for cleaning up, or any missing values. I also decided to keep all of the data columns for training.
+
+I ran all of the aforementioned models, and plotted their 'Feature Importance' to see which data was weighted higher, where I ran into my first issue. My Gradient Boosting Classifier was ranking all columns except 'Pay_0' as equal. I used the Catboost classifier's feature importance and compared the two graphs. This problem was solved after changing the model's learning rates and estimators, though I still don't fully understand why that occurred in the first place. Regardless, I moved on to plot the rest of the curves.
+
+I saw varying trends across each model, but  'Sex', 'Marital Status', and Payments '4,5,6' in different orders were consistently weighted low. I think this makes sense because 'Sex' and 'Marital Status' would have little correlation with defaulting, and as will the later payments because the likelihood of defaulting would be higher if the client is default on previous payments.
+
+In the end, I did some parameter tuning for each model to find the maximum scores possible. These scores are listed below:
+
+| Model | Accuracy | Precision | Recall |
+| :---: | -------- | --------- | ------ |
+|Gradient Boosting| 82.000|66.829|33.805|
+|Random Forest|81.773|65.366|33.989|
+|AdaBoost|81.653|65.437|32.968|
+|Catboost|82.067|66.133|35.526|
+
+For the purpose of this submission, I decided to ignore Catboost since the library was not provided as a prerequisite and it does take about ~10 minutes to get results while the other models completed under a minute or two.
+
+From the remaining three, I chose to keep Gradient Boosting due to its slightly higher accuracy and precision rate, although with lower recall - although Random Forest is most comparable to due a relatively small tradeoff for higher recall. In the end, I feel like it boils down to the goal of the algorithm - whether the user wishes to minimize FP or FN.
+
+Limitations:  
+I think that these values can be improved by further testing and tuning of the models using methods like scikit's GridSearchCV. I have never used it before, and my attempt using it brought the metrics down, hence I decided not to mess with it until I understood it better.
+
+I also have not explored scoring using F1 or similar metrics. Using models like NNs and XGBoost might also provide better results than the ones in this repo.
 
 
 ## Data Format
