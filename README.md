@@ -58,19 +58,14 @@ In the end, I did some parameter tuning for each model to find the maximum score
 
 | Model | Accuracy | Precision | Recall |
 | :---: | -------- | --------- | ------ |
-|Gradient Boosting| 82.000|66.829|33.805|
+|Gradient Boosting| 82.067|66.023|35.710|
 |Random Forest|81.773|65.366|33.989|
 |AdaBoost|81.653|65.437|32.968|
 |Catboost|82.067|66.133|35.526|
 
-For the purpose of this submission, I decided to ignore Catboost since the library was not provided as a prerequisite and it does take about ~10 minutes to get results while the other models completed under a minute or two.
+For the purpose of this submission, I decided to ignore Catboost since the library was not provided as a prerequisite and it does take about ~10 minutes to get results while the other models completed under a minute or two. From the remaining three, I chose to keep Gradient Boosting due to its slightly higher accuracy, precision rate and recall.
 
-From the remaining three, I chose to keep Gradient Boosting due to its slightly higher accuracy and precision rate, although with lower recall - although Random Forest is most comparable to due a relatively small tradeoff for higher recall. In the end, I feel like it boils down to the goal of the algorithm - whether the user wishes to minimize FP or FN.
-
-Limitations:  
-I think that these values can be improved by further testing and tuning of the models using methods like scikit's GridSearchCV. I have never used it before, and my attempt using it brought the metrics down, hence I decided not to mess with it until I understood it better.
-
-I also have not explored scoring using F1 or similar metrics. Using models like NNs and XGBoost might also provide better results than the ones in this repo.
+I think that these values can be improved by further testing and tuning of the models using methods like scikit's GridSearchCV. I have never used it before, and my attempt using it brought the metrics down, hence I decided not to mess with it until I understood it better. I also have not explored scoring using F1 or similar metrics for a similar reason, though I feel like it boils down to the goal of the algorithm - whether the user wishes to minimize FP or FN, and the model's performance can be evaluated subjectively based on context.
 
 
 ## Data Format
